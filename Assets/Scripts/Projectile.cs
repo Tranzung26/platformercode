@@ -25,6 +25,9 @@ public class Projectile : MonoBehaviour
     //The knockback of the attack. By default no knockback. Positive value knock away, negative values pull in.
     public Vector2 KnockBack = Vector2.zero;
 
+    private float Arralive;
+    private const float MaxArralive = 10f;
+
     private void Awake()
     {
        // Debug.Assert(Damage > 0, "'Damage' must be greater than 0!");
@@ -38,6 +41,16 @@ public class Projectile : MonoBehaviour
     void Start()
     {
         _rb.velocity = new Vector2(MoveSpeed.x * transform.localScale.x, MoveSpeed.y);
+        Arralive = 0f;
+    }
+
+    private void Update()
+    {
+        Arralive += Time.deltaTime;
+        if (Arralive > MaxArralive)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
