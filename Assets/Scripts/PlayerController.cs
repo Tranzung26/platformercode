@@ -94,22 +94,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    bool IsFacingRight
-    {
-        get => _isFacingRight;
-        set
-        {
-            if(_isFacingRight != value)
-            {
-                // Flip x-orientation:
-                transform.localScale *= new Vector2(-1, 1);
-            }
-            _isFacingRight = value;
-        }
-    }
-
-    bool IsAlive => _animator.GetBool(AnimationStrings.IsAlive);
-
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();

@@ -44,7 +44,7 @@ public class Damagable : MonoBehaviour
         set
         {
             _health = value;
-            HealthChanged?.Invoke(); // TODO: Assume that MaxHealth never changes during gameplay
+            HealthChanged?.Invoke();
 
             if (_health <= 0)
             { 

@@ -24,24 +24,23 @@ public class HealthBar : MonoBehaviour
     void Start()
     {
         HealthBarSlider.value = CalculateSliderPercentage();
-        HealthBarText.text = $"HP {_damagable.MaxHealth} / {_damagable.Health}";
+        HealthBarText.text = $"HP {_damagable.MaxHealth} / {_damagable.Health}";    
     }
 
     private void OnEnable()
-    {
+    {   
         _damagable.HealthChanged.AddListener(OnPlayerHealthChanged);
     }
 
-    private void OnDisable()
+   /* private void OnDisable()
     {
         _damagable.HealthChanged.RemoveListener(OnPlayerHealthChanged);
-    }
+    }*/
 
     private float CalculateSliderPercentage() => (float)_damagable.Health / _damagable.MaxHealth;
 
     private void OnPlayerHealthChanged()
     {
-        // TODO: Code clone from Start()
         HealthBarSlider.value = CalculateSliderPercentage();
         HealthBarText.text = $"HP {_damagable.MaxHealth} / {_damagable.Health}";
     }
