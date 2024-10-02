@@ -2,10 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <remarks>
-/// Tutorial mentions that this script is coming from another video: 
-/// <see href="https://www.youtube.com/watch?v=tMXgLBwtsvI&t=0s"/>
-/// </remarks>
+
 public class ParallaxEffect : MonoBehaviour
 {
     public Camera Camera;             // Reference to the camera in the scene
