@@ -32,6 +32,15 @@ public class PlayerController : MonoBehaviour
     //Determines the lateral move-speed of the player while in the air.
     public float AirwalkSpeed = 3f;
 
+    private Vector3 respawnPoint;
+    public GameObject fallDetector;
+
+    private void Start()
+    {
+        respawnPoint = transform.position;
+        _damagable = GetComponent<Damagable>();
+    }
+
     public bool IsMoving
     {
         get => _isMoving;
@@ -93,7 +102,7 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-
+    
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -108,6 +117,8 @@ public class PlayerController : MonoBehaviour
         {
             MovePlayer();
         }
+        
+        fallDetector.transform.position = new Vector2(transform.position.x, fallDetector.transform.position.y);
     }
 
     private void MovePlayer()
@@ -177,5 +188,19 @@ public class PlayerController : MonoBehaviour
     public void OnHit(int damage, Vector2 knockback)
     {
         _rb.velocity = new Vector2(knockback.x, _rb.velocity.y + knockback.y);
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "FallDetector")
+        {
+            transform.position = respawnPoint;
+
+            // Deduct 5 HP when respawning
+            if (_damagable != null)
+            {
+                _damagable.Health -= 5;
+                Debug.Log("Player Health after fall: " + _damagable.Health);
+            }
+        }
     }
 }

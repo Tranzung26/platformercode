@@ -24,7 +24,7 @@ public class HealthBar : MonoBehaviour
     void Start()
     {
         HealthBarSlider.value = CalculateSliderPercentage();
-        HealthBarText.text = $"HP {_damagable.MaxHealth} / {_damagable.Health}";    
+        HealthBarText.text = $"HP {_damagable.Health} / {_damagable.MaxHealth}";    
     }
 
     private void OnEnable()
@@ -42,6 +42,6 @@ public class HealthBar : MonoBehaviour
     private void OnPlayerHealthChanged()
     {
         HealthBarSlider.value = CalculateSliderPercentage();
-        HealthBarText.text = $"HP {_damagable.MaxHealth} / {_damagable.Health}";
+        HealthBarText.text = $"HP {_damagable.Health} / {_damagable.MaxHealth}";
     }
 }
