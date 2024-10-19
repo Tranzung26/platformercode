@@ -199,8 +199,11 @@ public class PlayerController : MonoBehaviour
             if (_damagable != null)
             {
                 _damagable.Health -= 5;
-                Debug.Log("Player Health after fall: " + _damagable.Health);
             }
+        }
+        else if(collision.tag == "CheckPoint")
+        {
+            respawnPoint = transform.position;
         }
     }
 }
