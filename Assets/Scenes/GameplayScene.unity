@@ -43630,8 +43630,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1459542497}
   - component: {fileID: 1459542498}
-  - component: {fileID: 1459542499}
-  - component: {fileID: 1459542500}
   m_Layer: 0
   m_Name: BG2
   m_TagString: Untagged
@@ -43706,34 +43704,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1459542499
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1459542496}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c4400cd5f7f53549aa3e514ee2b76d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Camera: {fileID: 0}
-  FollowTarget: {fileID: 1732385786}
---- !u!114 &1459542500
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1459542496}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c4400cd5f7f53549aa3e514ee2b76d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Camera: {fileID: 0}
-  FollowTarget: {fileID: 1732385786}
 --- !u!1 &1600315496
 GameObject:
   m_ObjectHideFlags: 0
@@ -43788,8 +43758,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1623549854}
   - component: {fileID: 1623549855}
-  - component: {fileID: 1623549857}
-  - component: {fileID: 1623549856}
   m_Layer: 0
   m_Name: BG1
   m_TagString: Untagged
@@ -43864,39 +43832,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1623549856
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1623549853}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c4400cd5f7f53549aa3e514ee2b76d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Camera: {fileID: 0}
-  FollowTarget: {fileID: 1732385786}
---- !u!114 &1623549857
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1623549853}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c4400cd5f7f53549aa3e514ee2b76d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Camera: {fileID: 0}
-  FollowTarget: {fileID: 1732385786}
---- !u!4 &1732385786 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4173802744146358531, guid: 2eeb939c97a0dc84dbfdb5bcf4f6e1c9, type: 3}
-  m_PrefabInstance: {fileID: 3197929408338580390}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1762020122
 GameObject:
   m_ObjectHideFlags: 0
@@ -43907,8 +43842,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1762020123}
   - component: {fileID: 1762020124}
-  - component: {fileID: 1762020125}
-  - component: {fileID: 1762020126}
   m_Layer: 0
   m_Name: BG3
   m_TagString: Untagged
@@ -43983,34 +43916,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1762020125
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1762020122}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c4400cd5f7f53549aa3e514ee2b76d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Camera: {fileID: 0}
-  FollowTarget: {fileID: 1732385786}
---- !u!114 &1762020126
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1762020122}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c4400cd5f7f53549aa3e514ee2b76d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Camera: {fileID: 0}
-  FollowTarget: {fileID: 1732385786}
 --- !u!1 &1805287679
 GameObject:
   m_ObjectHideFlags: 0
