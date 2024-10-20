@@ -1,4 +1,4 @@
-using Assets.Scripts;
+﻿using Assets.Scripts;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
     //Determines the lateral move-speed of the player while in the air.
     public float AirwalkSpeed = 3f;
 
-    public bool IsMoving
+    public bool IsMoving // variable
     {
         get => _isMoving;
         private set
@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public bool IsRunning
+    public bool IsRunning // variable
     {
         get => _isRunning;
         private set
@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public bool CanMove => _animator.GetBool(AnimationStrings.CanMove);
+    public bool CanMove => _animator.GetBool(AnimationStrings.CanMove); // variable
 
     float CurrentMoveSpeed
     {
@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour
         {
             if (CanMove)
             {
-                if (IsMoving && !_touchingDirections.IsOnWall)
+                if (IsMoving && !_touchingDirections.IsOnWall) // check chạm tường => speed 0
                 {
                     if (_touchingDirections.IsGrounded)
                     {
@@ -94,23 +94,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    bool IsFacingRight
-    {
-        get => _isFacingRight;
-        set
-        {
-            if(_isFacingRight != value)
-            {
-                // Flip x-orientation:
-                transform.localScale *= new Vector2(-1, 1);
-            }
-            _isFacingRight = value;
-        }
-    }
+    
 
-    bool IsAlive => _animator.GetBool(AnimationStrings.IsAlive);
-
-    private void Awake()
+    private void Awake() // init
     {
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
@@ -118,9 +104,9 @@ public class PlayerController : MonoBehaviour
         _damagable = GetComponent<Damagable>();
     }
 
-    private void Update()
+    private void Update() // event bắt action to update object
     {
-        if (CanMove && !_damagable.LockVelocity)
+        if (CanMove && !_damagable.LockVelocity) // LockVelocity lock di chuyển
         {
             MovePlayer();
         }
@@ -129,10 +115,10 @@ public class PlayerController : MonoBehaviour
     private void MovePlayer()
     {
         // Only control lateral movement from Player Input:
-        Vector2 targetVelocity = new Vector2(_moveInput.x * CurrentMoveSpeed, _rb.velocity.y);
+        Vector2 targetVelocity = new Vector2(_moveInput.x * CurrentMoveSpeed, _rb.velocity.y); // hander speed ngang, no change dọc
         _rb.velocity = targetVelocity;
 
-        _animator.SetFloat(AnimationStrings.YVelocity, _rb.velocity.y);
+        _animator.SetFloat(AnimationStrings.YVelocity, _rb.velocity.y); // check action player
 
         if (_moveInput.x > 0 && !_isFacingRight)
         {
@@ -144,24 +130,42 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void Flip()
+    private void Flip() // xoay người
     {
         _isFacingRight = !_isFacingRight;
         Vector3 scale = transform.localScale;
-        scale.x *= -1;
+        scale.x *= -1; // đảo ngược giá trị của trục x
         transform.localScale = scale;
     }
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        _moveInput = context.ReadValue<Vector2>();
+        _moveInput = context.ReadValue<Vector2>(); // lấy giá trị Vector2 để move
+        //_moveInput = new Vector2(1, 0); // qua phải
+        //Debug.Log(context.ReadValue<Vector2>()); 
         _isMoving = _moveInput != Vector2.zero;
         _animator.SetBool(AnimationStrings.IsMoving, _isMoving);
     }
 
+    //bool IsFacingRight // variable
+    //{
+    //    get => _isFacingRight;
+    //    set
+    //    {
+    //        if (_isFacingRight != value)
+    //        {
+    //            // Flip x-orientation:
+    //            transform.localScale *= new Vector2(-1, 1);
+    //        }
+    //        _isFacingRight = value;
+    //    }
+    //}
+
+    //bool IsAlive => _animator.GetBool(AnimationStrings.IsAlive); // variable
+
     public void OnRun(InputAction.CallbackContext context)
     {
-        _isRunning = context.ReadValueAsButton();
+        _isRunning = context.ReadValueAsButton(); 
         _animator.SetBool(AnimationStrings.IsRunning, _isRunning);
     }
 
@@ -192,6 +196,6 @@ public class PlayerController : MonoBehaviour
 
     public void OnHit(int damage, Vector2 knockback)
     {
-        _rb.velocity = new Vector2(knockback.x, _rb.velocity.y + knockback.y);
+        _rb.velocity = new Vector2(knockback.x, knockback.y);
     }
 }
