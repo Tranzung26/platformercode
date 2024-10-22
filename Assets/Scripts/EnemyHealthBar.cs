@@ -11,7 +11,6 @@ public class EnemyHealthBar : MonoBehaviour
 
     private void Awake()
     {
-        // Lấy thành phần Damagable từ đối tượng này (tức là quái vật)
         _damagable = GetComponentInParent<Damagable>();
         Debug.Assert(_damagable != null, "The parent object must have a 'Damagable' component!");
     }
