@@ -10,6 +10,8 @@ public class Attack : MonoBehaviour
     public int AttackDamage = 10;
 
     public Vector2 KnockBack = Vector2.zero;
+    private bool _isBuffed = false;
+    private Coroutine _buffCoroutine;
 
     private void Awake()
     {
@@ -18,16 +20,37 @@ public class Attack : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.TryGetComponent<Damagable>(out var damagable))
+        if (collision.TryGetComponent<Damagable>(out var damagable))
         {
             var deliveredKnockback = transform.parent.localScale.x > 0 ?
                 KnockBack :
                 new Vector2(-KnockBack.x, KnockBack.y);
             bool gotHit = damagable.Hit(AttackDamage, deliveredKnockback);
-            if(gotHit)
+            if (gotHit)
             {
                 Debug.Log($"{collision.name} hit for {AttackDamage}");
             }
         }
+    }
+    public void BoostDamage(int boostAmount, float duration)
+    {
+        if (!_isBuffed)
+        {
+            _isBuffed = true;
+            AttackDamage += boostAmount;
+
+
+            _buffCoroutine = StartCoroutine(RemoveBuff(boostAmount, duration));
+        }
+    }
+
+    private IEnumerator RemoveBuff(int boostAmount, float duration)
+    {
+        yield return new WaitForSeconds(duration);
+
+        AttackDamage -= boostAmount;
+        _isBuffed = false;
+
+        Debug.Log("Damage buff ended");
     }
 }
