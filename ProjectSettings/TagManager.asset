@@ -6,6 +6,7 @@ TagManager:
   tags:
   - FallDetector
   - CheckPoint
+  - Enemy
   - CoinTag
   - Vang
   layers:
