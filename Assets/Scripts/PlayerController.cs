@@ -1,4 +1,4 @@
-using Assets.Scripts;
+﻿using Assets.Scripts;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -32,6 +32,10 @@ public class PlayerController : MonoBehaviour
     //Determines the lateral move-speed of the player while in the air.
     public float AirwalkSpeed = 3f;
 
+    public int Level = 1;
+    public int Experience = 0;
+    public int XPThreshold = 100;
+
     private Vector3 respawnPoint;
     public GameObject fallDetector;
 
@@ -39,6 +43,10 @@ public class PlayerController : MonoBehaviour
     {
         respawnPoint = transform.position;
         _damagable = GetComponent<Damagable>();
+        Level = 1;
+        Experience = 0;
+        XPThreshold = CalculateXPThreshold(Level);
+        LoadPlayerData();
     }
 
     public bool IsMoving
@@ -205,5 +213,55 @@ public class PlayerController : MonoBehaviour
         {
             respawnPoint = transform.position;
         }
+    }
+
+    public void GainExperience(int amount)
+    {
+        Experience += amount;
+        if (Experience >= XPThreshold)
+        {
+            LevelUp();
+        }
+    }
+
+    public event Action<int> OnLevelUp;
+    private void LevelUp()
+    {
+        Level++;
+        Experience -= XPThreshold;
+        XPThreshold = CalculateXPThreshold(Level);
+
+        _damagable.MaxHealth += 10;
+        WalkSpeed += 0.5f;
+
+        _damagable.Health = _damagable.MaxHealth;
+        OnLevelUp?.Invoke(Level);
+
+        Debug.Log($"Leveled up to {Level}! New Max Health: {_damagable.MaxHealth}, New Walk Speed: {WalkSpeed}");
+    }
+
+    private int CalculateXPThreshold(int level)
+    {
+        return 100 + (level - 1) * 20;
+    }
+
+    // Phương thức lưu dữ liệu người chơi
+    public void SavePlayerData()
+    {
+        PlayerPrefs.SetInt("PlayerLevel", Level);
+        PlayerPrefs.SetInt("PlayerExperience", Experience);
+        PlayerPrefs.SetFloat("PlayerWalkSpeed", WalkSpeed);
+        PlayerPrefs.SetInt("PlayerMaxHealth", _damagable.MaxHealth);
+        PlayerPrefs.Save();
+    }
+
+    // Phương thức tải dữ liệu người chơi
+    public void LoadPlayerData()
+    {
+        Level = PlayerPrefs.GetInt("PlayerLevel", 1);
+        Experience = PlayerPrefs.GetInt("PlayerExperience", 0);
+        WalkSpeed = PlayerPrefs.GetFloat("PlayerWalkSpeed", 5f);
+        _damagable.MaxHealth = PlayerPrefs.GetInt("PlayerMaxHealth", 100);
+        _damagable.Health = _damagable.MaxHealth;
     }
 }
