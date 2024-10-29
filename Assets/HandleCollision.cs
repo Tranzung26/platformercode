@@ -10,7 +10,8 @@ public class HandleCollision : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-		CoinText.SetText(Coin.ToString());
+        Coin = PlayerPrefs.GetInt("saveCoin");
+        CoinText.SetText(PlayerPrefs.GetInt("saveCoin").ToString());
 	}
 
     // Update is called once per frame
@@ -23,9 +24,14 @@ public class HandleCollision : MonoBehaviour
     {
 	    if (collision.CompareTag("CoinTag"))
 	    {
-		    Coin++;
+            Coin++;
+            PlayerPrefs.SetInt("saveCoin", Coin);
             CoinText.SetText(Coin.ToString());
             Destroy(collision.gameObject);
 	    }
+    }
+    public void SaveCoin()
+    {
+        PlayerPrefs.SetInt("saveCoin", 10);
     }
 }
