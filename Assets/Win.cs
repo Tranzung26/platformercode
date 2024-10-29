@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CoinObject : MonoBehaviour
+public class Win : MonoBehaviour
 {
 	private AudioManager audioManager;
 
@@ -15,8 +15,8 @@ public class CoinObject : MonoBehaviour
 	{
 		if (collision.CompareTag("Player"))
 		{
-			audioManager.PlaySFX(audioManager.coinClip);
-			
+			Debug.Log("bbbbbbbbbbbb");
+			audioManager.PlaySFX(audioManager.winClip);
 		}
 	}
 }

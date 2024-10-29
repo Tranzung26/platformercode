@@ -11,6 +11,7 @@ public class AudioManager : MonoBehaviour
 	// tao bien luu tru audio Clip
 	public AudioClip musicClip;
 	public AudioClip coinClip;
+	public AudioClip winClip;
 	// Start is called before the first frame update
 	void Start()
     {

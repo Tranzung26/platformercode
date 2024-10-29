@@ -11,7 +11,7 @@ public class HealthPickup : MonoBehaviour
     public int HealthRestored = 20;
 
     [Tooltip("The speed, in degrees/s, at which the pickup rotates")]
-    public Vector3 SpinRotationSpeed = new Vector3(0, 180, 0);
+    public Vector3 SpinRotationSpeed = new Vector3(0, 180, 0); //xooay 180 do
 
     private void Awake()
     {
@@ -20,7 +20,7 @@ public class HealthPickup : MonoBehaviour
 
     private void Update()
     {
-        transform.eulerAngles += SpinRotationSpeed * Time.deltaTime;
+        transform.eulerAngles += SpinRotationSpeed * Time.deltaTime; // xoay base thoi gian
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
