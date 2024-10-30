@@ -1,4 +1,4 @@
-using Assets.Scripts;
+﻿using Assets.Scripts;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -25,6 +25,9 @@ public class Knight : MonoBehaviour
     TouchingDirections _touchingDirections;
     Animator _animator;
     Damagable _damageable;
+
+    public int XPGainOnDeath = 50;
+    private Damagable _damagable;
 
     public enum WalkableDirection { Right, Left };
 
@@ -70,6 +73,8 @@ public class Knight : MonoBehaviour
         _touchingDirections = GetComponent<TouchingDirections>();
         _animator = GetComponent<Animator>();
         _damageable = GetComponent<Damagable>();
+        _damagable = GetComponent<Damagable>();
+        _damagable.Died.AddListener(OnDeath);
     }
 
     void Update()
@@ -126,6 +131,15 @@ public class Knight : MonoBehaviour
         if (_touchingDirections.IsGrounded)
         {
             FlipDirection();
+        }
+    }
+
+    private void OnDeath()
+    {
+        PlayerController player = FindObjectOfType<PlayerController>();
+        if (player != null)
+        {
+            player.GainExperience(XPGainOnDeath);
         }
     }
 }
