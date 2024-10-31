@@ -5,6 +5,7 @@ public class Menu : MonoBehaviour
 {
     public void Play()
     {
+        PlayerPrefs.DeleteAll();
         SceneManager.LoadScene(1);
     }
     public void ExitToMenu()

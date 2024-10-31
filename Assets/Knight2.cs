@@ -15,6 +15,9 @@ public class Knight2 : MonoBehaviour
     public DetectionZone CliffDetectionZone;
     public float WalkStopRate = 0.05f;
 
+    public int XPGainOnDeath = 50;
+    private Damagable _damagable;
+
     Rigidbody2D _rb;
     TouchingDirections _touchingDirections;
     Animator _animator;
@@ -71,6 +74,8 @@ public class Knight2 : MonoBehaviour
         // Thiết lập ranh giới cố định
         leftBoundary = transform.position.x - 5f;
         rightBoundary = transform.position.x + 5f;
+        _damagable = GetComponent<Damagable>();
+        _damagable.Died.AddListener(OnDeath);
     }
 
     void Update()
@@ -83,6 +88,15 @@ public class Knight2 : MonoBehaviour
         }
 
         HandleMovement();
+    }
+
+    private void OnDeath()
+    {
+        PlayerController player = FindObjectOfType<PlayerController>();
+        if (player != null)
+        {
+            player.GainExperience(XPGainOnDeath);
+        }
     }
 
     void HandleMovement()
