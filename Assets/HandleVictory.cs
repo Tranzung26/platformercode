@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HandleVictory : MonoBehaviour
 {
@@ -20,5 +21,15 @@ public class HandleVictory : MonoBehaviour
 			Debug.Log("aaaaaaaaaa");
 		    victoryCanvas.SetActive(true);
 	    }
+    }
+
+    public void NextLevel()
+    {
+        SceneManager.LoadScene("DemoNextLevel");
+    }
+
+    public void PauseGame()
+    {
+        Time.timeScale = 0; // countinue = 1
     }
 }
