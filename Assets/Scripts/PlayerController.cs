@@ -217,9 +217,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public event Action OnExperienceGained;
     public void GainExperience(int amount)
     {
         Experience += amount;
+        OnExperienceGained?.Invoke();
         if (Experience >= XPThreshold)
         {
             LevelUp();
@@ -243,6 +245,8 @@ public class PlayerController : MonoBehaviour
         _damagable.Health = _damagable.MaxHealth;
 
         Debug.Log($"Leveled up to {Level}! New Max Health: {_damagable.MaxHealth}, New Walk Speed: {WalkSpeed}, New Attack Damage: {_attack.AttackDamage}");
+        
+        OnExperienceGained?.Invoke();
     }
 
     private int CalculateXPThreshold(int level)
@@ -277,5 +281,4 @@ public class PlayerController : MonoBehaviour
             _attack.AttackDamage = PlayerPrefs.GetInt("PlayerAttackDamage", 10);
         }
     }
-
 }
