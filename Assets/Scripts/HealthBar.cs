@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -43,5 +44,16 @@ public class HealthBar : MonoBehaviour
     {
         HealthBarSlider.value = CalculateSliderPercentage();
         HealthBarText.text = $"HP {_damagable.Health} / {_damagable.MaxHealth}";
+    }
+
+    public void BuyHealItem()
+    {
+
+        Debug.Log("aaaaaaaaaa");
+        Debug.Log("bbbbbbbb" + _damagable.MaxHealth);
+        _damagable.MaxHealth += 10;
+        _damagable.Health += 10;
+        Debug.Log("ccccccc" + _damagable.MaxHealth);
+
     }
 }
