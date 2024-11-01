@@ -24,6 +24,9 @@ public class FlyingEyes : MonoBehaviour
     [Tooltip("The collider to be enabled on death.")]
     public Collider2D DeathCollider;
 
+    [Tooltip("The amount of experience gained when the Flying Eye dies.")]
+    public int XPGainOnDeath1 = 30; // Lượng XP trao cho người chơi
+
     private Vector3 initialPosition;  // First Location
     private bool movingRight = true;  
 
@@ -129,5 +132,11 @@ public class FlyingEyes : MonoBehaviour
         _rb.gravityScale = 2f;
         _rb.velocity = new Vector2(0, _rb.velocity.y);
         DeathCollider.enabled = true;
+
+        PlayerController player = FindObjectOfType<PlayerController>();
+        if (player != null)
+        {
+            player.GainExperience(XPGainOnDeath1);
+        }
     }
 }
