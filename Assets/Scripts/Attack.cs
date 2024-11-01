@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +8,6 @@ public class Attack : MonoBehaviour
     Collider2D _attackCollider; // TODO: Do we need this attack collider? It's not being used; but perhaps make sense to require it due to collision detection logic.
 
     public int AttackDamage = 10;
-    public int DamagePerLevel = 5; // Amount to increase damage per level
 
     public Vector2 KnockBack = Vector2.zero;
     private bool _isBuffed = false;
@@ -53,32 +52,5 @@ public class Attack : MonoBehaviour
         _isBuffed = false;
 
         Debug.Log("Damage buff ended");
-    }
-
-    private void Start()
-    {
-        // Get PlayerController reference and subscribe to OnLevelUp
-        var playerController = GetComponentInParent<PlayerController>();
-        if (playerController != null)
-        {
-            playerController.OnLevelUp += HandleLevelUp;
-        }
-    }
-
-    private void HandleLevelUp(int newLevel)
-    {
-        // Increase damage by DamagePerLevel for each level up
-        AttackDamage += DamagePerLevel;
-        Debug.Log($"Damage increased to {AttackDamage} at Level {newLevel}");
-    }
-
-    private void OnDestroy()
-    {
-        // Unsubscribe to prevent memory leaks
-        var playerController = GetComponentInParent<PlayerController>();
-        if (playerController != null)
-        {
-            playerController.OnLevelUp -= HandleLevelUp;
-        }
     }
 }

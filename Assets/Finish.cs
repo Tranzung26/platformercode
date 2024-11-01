@@ -8,7 +8,6 @@ public class Finish : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             playerController.SavePlayerData();
-            // go to next map
             SceneController.instance.NextLevel();
         }
     }

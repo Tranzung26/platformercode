@@ -46957,6 +46957,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4606348892272059951, guid: 2eeb939c97a0dc84dbfdb5bcf4f6e1c9, type: 3}
+      propertyPath: Level
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4606348892272059951, guid: 2eeb939c97a0dc84dbfdb5bcf4f6e1c9, type: 3}
       propertyPath: RunSpeed
       value: 10
       objectReference: {fileID: 0}
@@ -46995,6 +46999,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 225424831850597255, guid: 6bf72ebca32e5844096964395ba4fd5f, type: 3}
+      propertyPath: XPGainOnDeath
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 225424831850597255, guid: 6bf72ebca32e5844096964395ba4fd5f, type: 3}
       propertyPath: CliffDetectionZone
       value: 
@@ -47038,6 +47046,10 @@ PrefabInstance:
     - target: {fileID: 1724553092437971808, guid: 6bf72ebca32e5844096964395ba4fd5f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5630338590548763486, guid: 6bf72ebca32e5844096964395ba4fd5f, type: 3}
+      propertyPath: _maxHealth
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8839217458368003643, guid: 6bf72ebca32e5844096964395ba4fd5f, type: 3}
       propertyPath: m_Name

@@ -38,11 +38,13 @@ public class PlayerController : MonoBehaviour
 
     private Vector3 respawnPoint;
     public GameObject fallDetector;
+    private Attack _attack;
 
     private void Start()
     {
         respawnPoint = transform.position;
         _damagable = GetComponent<Damagable>();
+        _attack = GetComponentInChildren<Attack>();
         Level = 1;
         Experience = 0;
         XPThreshold = CalculateXPThreshold(Level);
@@ -215,16 +217,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public event Action OnExperienceGained;
     public void GainExperience(int amount)
     {
         Experience += amount;
+        OnExperienceGained?.Invoke();
         if (Experience >= XPThreshold)
         {
             LevelUp();
         }
     }
 
-    public event Action<int> OnLevelUp;
     private void LevelUp()
     {
         Level++;
@@ -234,10 +237,16 @@ public class PlayerController : MonoBehaviour
         _damagable.MaxHealth += 10;
         WalkSpeed += 0.5f;
 
-        _damagable.Health = _damagable.MaxHealth;
-        OnLevelUp?.Invoke(Level);
+        if (_attack != null)
+        {
+            _attack.AttackDamage += 5; // Increase AttackDamage by 5 on each level-up
+        }
 
-        Debug.Log($"Leveled up to {Level}! New Max Health: {_damagable.MaxHealth}, New Walk Speed: {WalkSpeed}");
+        _damagable.Health = _damagable.MaxHealth;
+
+        Debug.Log($"Leveled up to {Level}! New Max Health: {_damagable.MaxHealth}, New Walk Speed: {WalkSpeed}, New Attack Damage: {_attack.AttackDamage}");
+        
+        OnExperienceGained?.Invoke();
     }
 
     private int CalculateXPThreshold(int level)
@@ -245,23 +254,31 @@ public class PlayerController : MonoBehaviour
         return 100 + (level - 1) * 20;
     }
 
-    // Phương thức lưu dữ liệu người chơi
     public void SavePlayerData()
     {
         PlayerPrefs.SetInt("PlayerLevel", Level);
         PlayerPrefs.SetInt("PlayerExperience", Experience);
         PlayerPrefs.SetFloat("PlayerWalkSpeed", WalkSpeed);
         PlayerPrefs.SetInt("PlayerMaxHealth", _damagable.MaxHealth);
+        PlayerPrefs.SetInt("PlayerCurrentHealth", _damagable.Health);
+        if (_attack != null)
+        {
+            PlayerPrefs.SetInt("PlayerAttackDamage", _attack.AttackDamage);
+        }
         PlayerPrefs.Save();
     }
 
-    // Phương thức tải dữ liệu người chơi
-    public void LoadPlayerData()
+    private void LoadPlayerData()
     {
         Level = PlayerPrefs.GetInt("PlayerLevel", 1);
         Experience = PlayerPrefs.GetInt("PlayerExperience", 0);
         WalkSpeed = PlayerPrefs.GetFloat("PlayerWalkSpeed", 5f);
         _damagable.MaxHealth = PlayerPrefs.GetInt("PlayerMaxHealth", 100);
-        _damagable.Health = _damagable.MaxHealth;
+        _damagable.Health = PlayerPrefs.GetInt("PlayerCurrentHealth", _damagable.MaxHealth);
+
+        if (_attack != null)
+        {
+            _attack.AttackDamage = PlayerPrefs.GetInt("PlayerAttackDamage", 10);
+        }
     }
 }
