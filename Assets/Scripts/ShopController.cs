@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class ShopController : MonoBehaviour
 {
-    int CountHealthItem = 0;
+    Damagable damagable = new Damagable();
+    HealthBar healthBar = new HealthBar();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +21,12 @@ public class ShopController : MonoBehaviour
 
     public void BuyHealItem()
     {
+
+        Debug.Log("aaaaaaaaaa");
+        Debug.Log("bbbbbbbb" + damagable.MaxHealth);
+        damagable.MaxHealth += 10;
+        damagable.Health += 10;
+        Debug.Log("ccccccc" + damagable.MaxHealth);
         
     }
 }
