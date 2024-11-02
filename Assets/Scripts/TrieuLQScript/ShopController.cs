@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HandleVictory : MonoBehaviour
+public class ShopController : MonoBehaviour
 {
-    public GameObject gameWinUI;
+    Damagable damagable = new Damagable();
+    HealthBar healthBar = new HealthBar();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,11 +19,17 @@ public class HandleVictory : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void BuyHealItem()
     {
-        if (collision.CompareTag("Player"))
-        {
-            //gameWinUI.SetActive(true);
-        }
+
+        
+        
     }
+
+    public void BuyDameItem()
+    {
+
+    }
+
+    
 }
