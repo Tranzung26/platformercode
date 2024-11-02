@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - CoinTag
   - Audio
+  - FlagVictory
   layers:
   - Default
   - TransparentFX
