@@ -22,11 +22,14 @@ public class ShopController : MonoBehaviour
     public void BuyHealItem()
     {
 
-        Debug.Log("aaaaaaaaaa");
-        Debug.Log("bbbbbbbb" + damagable.MaxHealth);
-        damagable.MaxHealth += 10;
-        damagable.Health += 10;
-        Debug.Log("ccccccc" + damagable.MaxHealth);
+        
         
     }
+
+    public void BuyDameItem()
+    {
+
+    }
+
+    
 }

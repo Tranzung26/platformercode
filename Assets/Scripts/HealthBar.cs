@@ -46,14 +46,9 @@ public class HealthBar : MonoBehaviour
         HealthBarText.text = $"HP {_damagable.Health} / {_damagable.MaxHealth}";
     }
 
-    public void BuyHealItem()
+    public void BuyMaxHealItem()
     {
-
-        Debug.Log("aaaaaaaaaa");
-        Debug.Log("bbbbbbbb" + _damagable.MaxHealth);
         _damagable.MaxHealth += 10;
         _damagable.Health += 10;
-        Debug.Log("ccccccc" + _damagable.MaxHealth);
-
     }
 }
