@@ -9,6 +9,8 @@ public class Damagable : MonoBehaviour
 {
     Animator _animator;
 
+    public GameObject gameOverUI;
+
     private float _timeSinceHit = 0;
 
     // TODO: Can be hit multiple times by a single attack, even when InvicibilityTimer is longer than the hit-box of the enamy attack.
@@ -102,6 +104,11 @@ public class Damagable : MonoBehaviour
             }
 
             _timeSinceHit += Time.deltaTime;
+        }
+
+        if (!IsAlive)
+        {
+            gameOverUI.SetActive(true);
         }
     }
 
