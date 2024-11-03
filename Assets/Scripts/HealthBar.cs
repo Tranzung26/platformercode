@@ -12,6 +12,7 @@ public class HealthBar : MonoBehaviour
 
     public TMP_Text HealthBarText;
     public Slider HealthBarSlider;
+    public TextMeshProUGUI CoinText;
     private int CurrentCoin = 0;
 
     private void Awake()
@@ -51,7 +52,16 @@ public class HealthBar : MonoBehaviour
     public void BuyMaxHealItem()
     {
         Debug.Log("aaaaaaaaaaa" + CurrentCoin);
-        //_damagable.MaxHealth += 10;
-        //_damagable.Health += 10;
+        if (CurrentCoin >= 10)
+        {
+            CurrentCoin -= 10;
+            CoinText.SetText(CurrentCoin.ToString());
+            PlayerPrefs.SetInt("saveCoin", CurrentCoin);
+            PlayerPrefs.Save();
+            _damagable.MaxHealth += 10;
+            _damagable.Health += 10;
+        }
+
+        Debug.Log("bbbbbbbbb" + PlayerPrefs.GetInt("saveCoin"));
     }
 }
