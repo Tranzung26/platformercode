@@ -51,7 +51,6 @@ public class PlayerController : MonoBehaviour
         LoadPlayerData();
     }
 
-
     public bool IsMoving
     {
         get => _isMoving;
