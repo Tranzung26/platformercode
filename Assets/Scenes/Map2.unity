@@ -63142,11 +63142,11 @@ PrefabInstance:
       objectReference: {fileID: 136178492}
     - target: {fileID: 6820200046283415298, guid: 2eeb939c97a0dc84dbfdb5bcf4f6e1c9, type: 3}
       propertyPath: AttackDamage
-      value: 30
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7298582425453102498, guid: 2eeb939c97a0dc84dbfdb5bcf4f6e1c9, type: 3}
       propertyPath: AttackDamage
-      value: 30
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7974416486895435244, guid: 2eeb939c97a0dc84dbfdb5bcf4f6e1c9, type: 3}
       propertyPath: m_Layer
