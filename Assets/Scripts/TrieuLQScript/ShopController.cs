@@ -15,6 +15,7 @@ public class ShopController : MonoBehaviour
     void Start()
     {
         damagable = FindObjectOfType<Damagable>();
+        attack = FindObjectOfType<Attack>();
     }
 
     // Update is called once per frame
@@ -48,6 +49,8 @@ public class ShopController : MonoBehaviour
             currentCoin -= 2;
             CoinText.SetText(currentCoin.ToString());
             attack.AttackDamage += 5;
+            Debug.Log("Damage boosted by 5 for 10 seconds");
+            Debug.Log(attack.AttackDamage);
         }
         else
         {

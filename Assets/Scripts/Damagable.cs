@@ -105,11 +105,7 @@ public class Damagable : MonoBehaviour
 
             _timeSinceHit += Time.deltaTime;
         }
-
-        if (!IsAlive)
-        {
-            gameOverUI.SetActive(true);
-        }
+        
     }
 
     /// <returns>True when damage was registered; False otherwise.</returns>
