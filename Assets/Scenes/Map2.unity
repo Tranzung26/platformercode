@@ -60993,6 +60993,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3127113713723537875, guid: 7feffc63fb3eec440878037f9f69a847, type: 3}
+      propertyPath: SpinRotationSpeed.y
+      value: 180
+      objectReference: {fileID: 0}
     - target: {fileID: 7763994295522701962, guid: 7feffc63fb3eec440878037f9f69a847, type: 3}
       propertyPath: m_Name
       value: DamagePickup
