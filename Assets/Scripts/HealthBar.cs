@@ -13,6 +13,7 @@ public class HealthBar : MonoBehaviour
     public TMP_Text HealthBarText;
     public Slider HealthBarSlider;
     public TextMeshProUGUI CoinText;
+    public ShopController shopController;
 
     private void Awake()
     {
@@ -20,6 +21,8 @@ public class HealthBar : MonoBehaviour
         Debug.Assert(player != null, "There must be an object tagged 'Player'!");
         _damagable = player.GetComponent<Damagable>();
         Debug.Assert(_damagable != null, "The object tagged 'Player' must have a 'Damagable' component!");
+
+        //shopController = GetComponent<ShopController>();
     }
 
     // Start is called before the first frame update
@@ -50,16 +53,16 @@ public class HealthBar : MonoBehaviour
     public void BuyHealItem()
     {
         int currentCoin = int.Parse(CoinText.text);
-        if (currentCoin >= 1 && _damagable != null)
+        if (currentCoin >= 1)
         {
             currentCoin -= 1;
             CoinText.SetText(currentCoin.ToString());
             bool health = _damagable.Heal(20);
-            Debug.Log("aaaaa" + health);
+            shopController.BuyingSuccess();
         }
         else
         {
-            Debug.Log("not pass condition");
+            shopController.MessageError("Don't Enough Coin. Please Try Again");
         }
 
     }
@@ -67,17 +70,21 @@ public class HealthBar : MonoBehaviour
     public void BuyMaxHealItem()
     {
         int currentCoin = int.Parse(CoinText.text);
-        if (currentCoin >= 3 && _damagable != null)
+        if (currentCoin >= 3)
         {
             currentCoin -= 3;
             CoinText.SetText(currentCoin.ToString());
             _damagable.MaxHealth += 10;
             _damagable.Health += 10;
+            shopController.BuyingSuccess();
         }
         else
         {
-            Debug.Log("not pass condition");
+            shopController.MessageError("Don't Enough Coin. Please Try Again");
         }
+        
+        
+        
 
     }
 }

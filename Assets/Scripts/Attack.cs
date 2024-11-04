@@ -16,6 +16,7 @@ public class Attack : MonoBehaviour
     private Coroutine _buffCoroutine;
 
     public TextMeshProUGUI CoinText;
+    public ShopController shopController;
 
     private void Awake()
     {
@@ -66,10 +67,11 @@ public class Attack : MonoBehaviour
             currentCoin -= 2;
             CoinText.SetText(currentCoin.ToString());
             AttackDamage += 5;
+            shopController.BuyingSuccess();
         }
         else
         {
-            Debug.Log("not pass condition");
+            shopController.MessageError("Don't Enough Coin. Please Try Again");
         }
     }
 }
