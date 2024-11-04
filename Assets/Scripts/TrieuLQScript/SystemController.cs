@@ -34,4 +34,9 @@ public class SystemController : MonoBehaviour
     {
         SceneManager.LoadScene("MainMenu");
     }
+
+    public void NextLevelAction()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
 }

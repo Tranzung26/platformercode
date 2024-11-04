@@ -67,6 +67,10 @@ public class Damagable : MonoBehaviour
             if(value == false)
             {
                 Died?.Invoke();
+                if (gameObject.CompareTag("Player"))
+                {
+                    gameOverUI.SetActive(true);
+                }
             }
         }
     }

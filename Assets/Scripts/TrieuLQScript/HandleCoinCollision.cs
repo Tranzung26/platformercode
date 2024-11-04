@@ -4,7 +4,6 @@ using UnityEngine;
 using TMPro;
 public class HandleCoinCollision : MonoBehaviour
 {
-    public int Coin = 0;
     public TextMeshProUGUI CoinText;
     private AudioManager audioManager;
 
@@ -16,7 +15,6 @@ public class HandleCoinCollision : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Coin = PlayerPrefs.GetInt("saveCoin");
         CoinText.SetText(PlayerPrefs.GetInt("saveCoin").ToString());
     }
 
@@ -30,10 +28,10 @@ public class HandleCoinCollision : MonoBehaviour
     {
 	    if (collision.CompareTag("CoinTag"))
 	    {
+            int currentCoin = int.Parse(CoinText.text);
             audioManager.PlaySFX(audioManager.coinClip);
-            Coin++;
-            //PlayerPrefs.SetInt("saveCoin", Coin); // check if here
-            CoinText.SetText(Coin.ToString());
+            currentCoin++;
+            CoinText.SetText(currentCoin.ToString());
             Destroy(collision.gameObject);
 	    }
     }

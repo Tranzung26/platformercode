@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Data;
+using TMPro;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
@@ -12,6 +14,9 @@ public class Attack : MonoBehaviour
     public Vector2 KnockBack = Vector2.zero;
     private bool _isBuffed = false;
     private Coroutine _buffCoroutine;
+
+    public TextMeshProUGUI CoinText;
+    public ShopController shopController;
 
     private void Awake()
     {
@@ -52,5 +57,21 @@ public class Attack : MonoBehaviour
         _isBuffed = false;
 
         Debug.Log("Damage buff ended");
+    }
+
+    public void BuyDameItem()
+    {
+        int currentCoin = int.Parse(CoinText.text);
+        if (currentCoin >= 2)
+        {
+            currentCoin -= 2;
+            CoinText.SetText(currentCoin.ToString());
+            AttackDamage += 5;
+            shopController.BuyingSuccess();
+        }
+        else
+        {
+            shopController.MessageError("Don't Enough Coin. Please Try Again");
+        }
     }
 }
