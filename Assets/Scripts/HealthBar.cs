@@ -47,6 +47,23 @@ public class HealthBar : MonoBehaviour
         HealthBarText.text = $"HP {_damagable.Health} / {_damagable.MaxHealth}";
     }
 
+    public void BuyHealItem()
+    {
+        int currentCoin = int.Parse(CoinText.text);
+        if (currentCoin >= 1 && _damagable != null)
+        {
+            currentCoin -= 1;
+            CoinText.SetText(currentCoin.ToString());
+            bool health = _damagable.Heal(20);
+            Debug.Log("aaaaa" + health);
+        }
+        else
+        {
+            Debug.Log("not pass condition");
+        }
+
+    }
+
     public void BuyMaxHealItem()
     {
         int currentCoin = int.Parse(CoinText.text);

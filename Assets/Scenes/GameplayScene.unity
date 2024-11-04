@@ -6351,7 +6351,7 @@ PrefabInstance:
     - target: {fileID: 1168184754052909358, guid: 0569d917875de764997a70a865db3356, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1641313244}
+      objectReference: {fileID: 1400436609}
     - target: {fileID: 1168184754052909358, guid: 0569d917875de764997a70a865db3356, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -6362,7 +6362,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1168184754052909358, guid: 0569d917875de764997a70a865db3356, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: ShopController, Assembly-CSharp
+      value: HealthBar, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1168184754052909358, guid: 0569d917875de764997a70a865db3356, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -6395,7 +6395,7 @@ PrefabInstance:
     - target: {fileID: 3380991345911690564, guid: 0569d917875de764997a70a865db3356, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1641313244}
+      objectReference: {fileID: 785646445}
     - target: {fileID: 3380991345911690564, guid: 0569d917875de764997a70a865db3356, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -6406,7 +6406,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3380991345911690564, guid: 0569d917875de764997a70a865db3356, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: ShopController, Assembly-CSharp
+      value: Attack, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3380991345911690564, guid: 0569d917875de764997a70a865db3356, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -6642,10 +6642,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4499636687153793364, guid: 0569d917875de764997a70a865db3356, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1610920852}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7307525267672776186, guid: 0569d917875de764997a70a865db3356, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1641313244}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0569d917875de764997a70a865db3356, type: 3}
 --- !u!1 &678246251
 GameObject:
@@ -6988,6 +6985,17 @@ Transform:
   - {fileID: 1762020123}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &785646445 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7298582425453102498, guid: 2eeb939c97a0dc84dbfdb5bcf4f6e1c9, type: 3}
+  m_PrefabInstance: {fileID: 3197929408338580390}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e271ac32eca1b6842a8781d9b5c6f127, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &793741052
 GameObject:
   m_ObjectHideFlags: 0
@@ -47388,19 +47396,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4499636687153793364, guid: 0569d917875de764997a70a865db3356, type: 3}
   m_PrefabInstance: {fileID: 674287019}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1641313244
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1641313242}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee94197c1a7a9c541a2d4f6367e2ff67, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CoinText: {fileID: 616004581}
 --- !u!4 &1715867726 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4381390839454159930, guid: 21f25a7f487259c408d84749e231a6ea, type: 3}
@@ -48117,6 +48112,10 @@ PrefabInstance:
       propertyPath: fallDetector
       value: 
       objectReference: {fileID: 993263883}
+    - target: {fileID: 7298582425453102498, guid: 2eeb939c97a0dc84dbfdb5bcf4f6e1c9, type: 3}
+      propertyPath: CoinText
+      value: 
+      objectReference: {fileID: 616004581}
     - target: {fileID: 7974416486895435244, guid: 2eeb939c97a0dc84dbfdb5bcf4f6e1c9, type: 3}
       propertyPath: m_Layer
       value: 9
