@@ -9,7 +9,7 @@ public class Damagable : MonoBehaviour
 {
     Animator _animator;
 
-    public GameObject gameOverUI;
+    /*public GameObject gameOverUI;*/
 
     private float _timeSinceHit = 0;
 
@@ -54,7 +54,7 @@ public class Damagable : MonoBehaviour
             }
         }
     }
-
+/*
     [SerializeField]
     bool _isAlive = true;
     public bool IsAlive
@@ -71,6 +71,22 @@ public class Damagable : MonoBehaviour
                 {
                     gameOverUI.SetActive(true);
                 }
+            }
+        }
+    }*/
+
+    [SerializeField]
+    bool _isAlive = true;
+    public bool IsAlive
+    {
+        get => _isAlive;
+        set
+        {
+            _isAlive = value;
+            _animator.SetBool(AnimationStrings.IsAlive, value);
+            if (value == false)
+            {
+                Died?.Invoke();
             }
         }
     }

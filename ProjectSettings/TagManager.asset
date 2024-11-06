@@ -10,6 +10,7 @@ TagManager:
   - CoinTag
   - Audio
   - FlagVictory
+  - Boss
   layers:
   - Default
   - TransparentFX
