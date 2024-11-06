@@ -45699,6 +45699,10 @@ PrefabInstance:
       propertyPath: gameOverUI
       value: 
       objectReference: {fileID: 153970317}
+    - target: {fileID: 2337182871050673704, guid: 2afa47e0e198e99499b2138f395c8bd3, type: 3}
+      propertyPath: ArrowContainer
+      value: 
+      objectReference: {fileID: 926646649}
     - target: {fileID: 2579753362738883819, guid: 2afa47e0e198e99499b2138f395c8bd3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.75
