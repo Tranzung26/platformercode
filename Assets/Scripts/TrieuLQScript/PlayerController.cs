@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
     public int Level = 1;
     public int Experience = 0;
     public int XPThreshold = 100;
+    public int CurrentMapLevel = 1;
 
     private Vector3 respawnPoint;
     public GameObject fallDetector;
@@ -327,6 +328,7 @@ public class PlayerController : MonoBehaviour
 
     public void SavePlayerData()
     {
+        PlayerPrefs.SetInt("CurrentMapLevel", CurrentMapLevel);
         PlayerPrefs.SetInt("PlayerLevel", Level);
         PlayerPrefs.SetInt("PlayerExperience", Experience);
         PlayerPrefs.SetFloat("PlayerWalkSpeed", WalkSpeed);
@@ -342,6 +344,7 @@ public class PlayerController : MonoBehaviour
 
     private void LoadPlayerData()
     {
+        CurrentMapLevel = PlayerPrefs.GetInt("CurrentMapLevel", 1);
         Level = PlayerPrefs.GetInt("PlayerLevel", 1);
         Experience = PlayerPrefs.GetInt("PlayerExperience", 0);
         WalkSpeed = PlayerPrefs.GetFloat("PlayerWalkSpeed", 5f);

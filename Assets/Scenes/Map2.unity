@@ -88428,6 +88428,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameWinUI: {fileID: 1116185393}
   CoinText: {fileID: 199881945}
+  playerController: {fileID: 813360399}
 --- !u!114 &1949015887 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5966634522140126630, guid: 4bb4064eb7fe71f4ba3d8050beabceed, type: 3}

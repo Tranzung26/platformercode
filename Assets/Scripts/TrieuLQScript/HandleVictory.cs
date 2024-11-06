@@ -8,6 +8,7 @@ public class HandleVictory : MonoBehaviour
     public GameObject gameWinUI;
     public TextMeshProUGUI CoinText;
     private bool isGameWon = false;
+    public PlayerController playerController;
 
     // Start is called before the first frame update
     void Start()
@@ -28,10 +29,9 @@ public class HandleVictory : MonoBehaviour
             isGameWon = true;
             Time.timeScale = 0;
             gameWinUI.SetActive(true);
+            playerController.CurrentMapLevel += 1;
+            playerController.SavePlayerData();
 
-
-            //PlayerPrefs.SetInt("saveCoin", int.Parse(CoinText.text));
-            //PlayerPrefs.Save();
         }
         else
         {
