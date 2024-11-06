@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class SystemController : MonoBehaviour
 {
     public GameObject pauseGameUI;
+    public PlayerController playerController;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,6 +38,8 @@ public class SystemController : MonoBehaviour
 
     public void NextLevelAction()
     {
-        SceneManager.LoadScene("MainMenu");
+        Time.timeScale = 1;
+        playerController.SavePlayerData();
+        SceneManager.LoadScene("DemoMap3");
     }
 }
