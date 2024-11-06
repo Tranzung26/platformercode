@@ -45680,6 +45680,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2723686641971280839, guid: 2afa47e0e198e99499b2138f395c8bd3, type: 3}
+      propertyPath: CoinText
+      value: 
+      objectReference: {fileID: 616004581}
+    - target: {fileID: 2723686641971280839, guid: 2afa47e0e198e99499b2138f395c8bd3, type: 3}
       propertyPath: fallDetector
       value: 
       objectReference: {fileID: 993263883}
@@ -45719,6 +45723,10 @@ PrefabInstance:
     - target: {fileID: 7750719524697962136, guid: 38f7cc7c1bb6525459c55f9751af550c, type: 3}
       propertyPath: m_Name
       value: GameWin (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7750719524697962136, guid: 38f7cc7c1bb6525459c55f9751af550c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8983091876229068676, guid: 38f7cc7c1bb6525459c55f9751af550c, type: 3}
       propertyPath: m_LocalPosition.x
