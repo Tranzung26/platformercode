@@ -26,10 +26,12 @@ public class HandleVictory : MonoBehaviour
         if (collision.CompareTag("Player") && !isGameWon)
         {
             isGameWon = true;
+            Time.timeScale = 0;
             gameWinUI.SetActive(true);
 
-            PlayerPrefs.SetInt("saveCoin", int.Parse(CoinText.text));
-            PlayerPrefs.Save();
+
+            //PlayerPrefs.SetInt("saveCoin", int.Parse(CoinText.text));
+            //PlayerPrefs.Save();
         }
         else
         {
