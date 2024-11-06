@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -39,6 +40,8 @@ public class PlayerController : MonoBehaviour
     private Vector3 respawnPoint;
     public GameObject fallDetector;
     private Attack _attack;
+
+    public TextMeshProUGUI CoinText;
 
     private void Start()
     {
@@ -265,6 +268,7 @@ public class PlayerController : MonoBehaviour
         {
             PlayerPrefs.SetInt("PlayerAttackDamage", _attack.AttackDamage);
         }
+        PlayerPrefs.SetInt("saveCoin", int.Parse(CoinText.text)); // save coin
         PlayerPrefs.Save();
     }
 
