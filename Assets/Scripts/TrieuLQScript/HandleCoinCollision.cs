@@ -6,6 +6,8 @@ public class HandleCoinCollision : MonoBehaviour
 {
     public TextMeshProUGUI CoinText;
     private AudioManager audioManager;
+    public GameObject saleShopUI;
+    public ShopController ShopController;
 
     private void Awake()
     {
@@ -34,5 +36,17 @@ public class HandleCoinCollision : MonoBehaviour
             CoinText.SetText(currentCoin.ToString());
             Destroy(collision.gameObject);
 	    }
+
+        if (collision.CompareTag("SaleShop"))
+        {
+            Time.timeScale = 0;
+            saleShopUI.SetActive(true);
+            this.showSaleShop();
+        }
+    }
+
+    private void showSaleShop()
+    {
+        Debug.Log("Demo");
     }
 }
