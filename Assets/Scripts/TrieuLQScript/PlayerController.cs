@@ -43,6 +43,9 @@ public class PlayerController : MonoBehaviour
 
     public TextMeshProUGUI CoinText;
 
+    public static PlayerController instance;
+
+
     private void Start()
     {
         respawnPoint = transform.position;
@@ -74,7 +77,29 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public bool CanMove => _animator.GetBool(AnimationStrings.CanMove);
+    /*  private bool _canMove = true;
+
+      public bool CanMove
+      {
+          get => _canMove;
+          set
+          {
+              if (_canMove != value)
+              {
+                  _canMove = value;
+                  _animator.SetBool(AnimationStrings.CanMove, value);
+              }
+          }
+      }*/
+
+    /*public bool CanMove => _animator.GetBool(AnimationStrings.CanMove);*/
+
+    public bool CanMove
+    {
+        get => _animator.GetBool(AnimationStrings.CanMove);
+        set => _animator.SetBool(AnimationStrings.CanMove, value);
+    }
+
 
     float CurrentMoveSpeed
     {
@@ -118,6 +143,14 @@ public class PlayerController : MonoBehaviour
     
     private void Awake()
     {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         _touchingDirections = GetComponent<TouchingDirections>();
@@ -130,12 +163,47 @@ public class PlayerController : MonoBehaviour
         {
             MovePlayer();
         }
-        
+        else
+        {
+            _rb.velocity = new Vector2(0, _rb.velocity.y);
+            _animator.SetFloat(AnimationStrings.YVelocity, _rb.velocity.y);
+            _animator.SetBool(AnimationStrings.IsMoving, false);
+            _animator.SetBool(AnimationStrings.IsRunning, false);
+        }
+
         fallDetector.transform.position = new Vector2(transform.position.x, fallDetector.transform.position.y);
     }
 
     private void MovePlayer()
     {
+        if (!CanMove)
+        {
+            // Khi không thể di chuyển, giữ nguyên vận tốc ngang
+            _rb.velocity = new Vector2(0, _rb.velocity.y);
+            _animator.SetFloat(AnimationStrings.YVelocity, _rb.velocity.y);
+
+            // Đảm bảo chỉ dừng các trạng thái di chuyển khi thực sự cần
+            if (_isMoving)
+            {
+                _animator.SetBool(AnimationStrings.IsMoving, false);
+                _isMoving = false;
+            }
+            if (_isRunning)
+            {
+                _animator.SetBool(AnimationStrings.IsRunning, false);
+                _isRunning = false;
+            }
+
+            return;
+        }
+
+        // Kiểm tra có di chuyển không và cập nhật trạng thái
+        _isMoving = _moveInput != Vector2.zero;
+        _isRunning = IsRunning && _isMoving;
+        _animator.SetBool(AnimationStrings.IsMoving, _isMoving);
+        _animator.SetBool(AnimationStrings.IsRunning, _isRunning);
+
+
         // Only control lateral movement from Player Input:
         Vector2 targetVelocity = new Vector2(_moveInput.x * CurrentMoveSpeed, _rb.velocity.y);
         _rb.velocity = targetVelocity;
