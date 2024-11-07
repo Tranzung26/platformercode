@@ -10,6 +10,7 @@ public class Attack : MonoBehaviour
     Collider2D _attackCollider; // TODO: Do we need this attack collider? It's not being used; but perhaps make sense to require it due to collision detection logic.
 
     public int AttackDamage = 10;
+    public SpriteRenderer characterSpriteRenderer;
 
     public Vector2 KnockBack = Vector2.zero;
     private bool _isBuffed = false;
@@ -43,7 +44,7 @@ public class Attack : MonoBehaviour
         {
             _isBuffed = true;
             AttackDamage += boostAmount;
-
+            characterSpriteRenderer.color = Color.red;
 
             _buffCoroutine = StartCoroutine(RemoveBuff(boostAmount, duration));
         }
@@ -55,6 +56,7 @@ public class Attack : MonoBehaviour
 
         AttackDamage -= boostAmount;
         _isBuffed = false;
+        characterSpriteRenderer.color = Color.white;
 
         Debug.Log("Damage buff ended");
     }
