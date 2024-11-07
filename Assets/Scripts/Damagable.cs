@@ -1,4 +1,4 @@
-using Assets.Scripts;
+﻿using Assets.Scripts;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,7 +10,7 @@ public class Damagable : MonoBehaviour
     Animator _animator;
 
     /*public GameObject gameOverUI;*/
-
+    public UnityEvent OnHealthBelow50Percent;
     private float _timeSinceHit = 0;
 
     // TODO: Can be hit multiple times by a single attack, even when InvicibilityTimer is longer than the hit-box of the enamy attack.
@@ -49,31 +49,37 @@ public class Damagable : MonoBehaviour
             HealthChanged?.Invoke();
 
             if (_health <= 0)
-            { 
+            {
                 IsAlive = false;
+            }
+            else if (gameObject.CompareTag("Boss") && _health <= _maxHealth / 2)
+            {
+                // Khi máu <= 50% và là Boss, kích hoạt giảm sát thương và tăng tốc độ
+                OnHealthBelow50Percent?.Invoke();
             }
         }
     }
-/*
-    [SerializeField]
-    bool _isAlive = true;
-    public bool IsAlive
-    {
-        get => _isAlive;
-        set
+
+    /*
+        [SerializeField]
+        bool _isAlive = true;
+        public bool IsAlive
         {
-            _isAlive = value;
-            _animator.SetBool(AnimationStrings.IsAlive, value);
-            if(value == false)
+            get => _isAlive;
+            set
             {
-                Died?.Invoke();
-                if (gameObject.CompareTag("Player"))
+                _isAlive = value;
+                _animator.SetBool(AnimationStrings.IsAlive, value);
+                if(value == false)
                 {
-                    gameOverUI.SetActive(true);
+                    Died?.Invoke();
+                    if (gameObject.CompareTag("Player"))
+                    {
+                        gameOverUI.SetActive(true);
+                    }
                 }
             }
-        }
-    }*/
+        }*/
 
     [SerializeField]
     bool _isAlive = true;
@@ -111,6 +117,14 @@ public class Damagable : MonoBehaviour
     void Awake()
     {
         _animator = GetComponent<Animator>();
+        if (gameObject.CompareTag("Boss"))
+        {
+            OnHealthBelow50Percent.AddListener(() =>
+            {
+                Debug.Log("Boss health is below 50%, adjusting stats...");
+                FindObjectOfType<Attack>().AdjustForLowHealth();
+            });
+        }
     }
 
     private void Update()

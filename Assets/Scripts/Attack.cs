@@ -1,16 +1,22 @@
-﻿using System.Collections;
+﻿using Assets.Scripts;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using TMPro;
 using UnityEngine;
-
+[RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(Collider2D))]
 public class Attack : MonoBehaviour
 {
-    Collider2D _attackCollider; // TODO: Do we need this attack collider? It's not being used; but perhaps make sense to require it due to collision detection logic.
+    Animator _animator;
+    Collider2D _attackCollider;
 
     public int AttackDamage = 10;
-
+    public int ReducedAttackDamage = 5; // Sát thương khi máu thấp
+    public float IncreasedAttackSpeed = 1.5f; // Tốc độ đánh khi máu thấp
+    private float _originalAttackSpeed = 1.0f; // Tốc độ đánh ban đầu
+    public float AttackCooldown = 1.0f;
+    private float _currentAttackCooldown = 0f;
     public Vector2 KnockBack = Vector2.zero;
     private bool _isBuffed = false;
     private Coroutine _buffCoroutine;
@@ -20,7 +26,17 @@ public class Attack : MonoBehaviour
 
     private void Awake()
     {
+        _animator = GetComponent<Animator>();
         _attackCollider = GetComponent<Collider2D>();
+        _originalAttackSpeed = _animator.speed; // Lưu tốc độ ban đầu
+    }
+
+    private void Update()
+    {
+        if (_currentAttackCooldown > 0)
+        {
+            _currentAttackCooldown -= Time.deltaTime;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -37,14 +53,13 @@ public class Attack : MonoBehaviour
             }
         }
     }
+
     public void BoostDamage(int boostAmount, float duration)
     {
         if (!_isBuffed)
         {
             _isBuffed = true;
             AttackDamage += boostAmount;
-
-
             _buffCoroutine = StartCoroutine(RemoveBuff(boostAmount, duration));
         }
     }
@@ -57,6 +72,23 @@ public class Attack : MonoBehaviour
         _isBuffed = false;
 
         Debug.Log("Damage buff ended");
+    }
+
+    public void PerformAttack()
+    {
+        if (_currentAttackCooldown <= 0)
+        {
+            _animator.SetTrigger(AnimationStrings.AttackTrigger);
+            _currentAttackCooldown = AttackCooldown;
+        }
+    }
+
+    // Thêm phương thức AdjustForLowHealth
+    public void AdjustForLowHealth()
+    {
+        AttackDamage = ReducedAttackDamage;
+        _animator.speed = IncreasedAttackSpeed;
+        Debug.Log("Adjusted damage and speed for low health.");
     }
 
     public void BuyDameItem()
