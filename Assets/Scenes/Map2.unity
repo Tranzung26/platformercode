@@ -82672,6 +82672,10 @@ PrefabInstance:
       propertyPath: SpinRotationSpeed.y
       value: 180
       objectReference: {fileID: 0}
+    - target: {fileID: 4203558562048301157, guid: 7feffc63fb3eec440878037f9f69a847, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7763994295522701962, guid: 7feffc63fb3eec440878037f9f69a847, type: 3}
       propertyPath: m_Name
       value: DamagePickup
@@ -85129,9 +85133,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 136178492}
     - target: {fileID: 6820200046283415298, guid: 2eeb939c97a0dc84dbfdb5bcf4f6e1c9, type: 3}
+      propertyPath: CoinText
+      value: 
+      objectReference: {fileID: 199881945}
+    - target: {fileID: 6820200046283415298, guid: 2eeb939c97a0dc84dbfdb5bcf4f6e1c9, type: 3}
       propertyPath: AttackDamage
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 6820200046283415298, guid: 2eeb939c97a0dc84dbfdb5bcf4f6e1c9, type: 3}
+      propertyPath: shopController
+      value: 
+      objectReference: {fileID: 1949015887}
+    - target: {fileID: 6820200046283415298, guid: 2eeb939c97a0dc84dbfdb5bcf4f6e1c9, type: 3}
+      propertyPath: characterSpriteRenderer
+      value: 
+      objectReference: {fileID: 813360400}
     - target: {fileID: 7298582425453102498, guid: 2eeb939c97a0dc84dbfdb5bcf4f6e1c9, type: 3}
       propertyPath: CoinText
       value: 
@@ -85144,6 +85160,10 @@ PrefabInstance:
       propertyPath: shopController
       value: 
       objectReference: {fileID: 1949015887}
+    - target: {fileID: 7298582425453102498, guid: 2eeb939c97a0dc84dbfdb5bcf4f6e1c9, type: 3}
+      propertyPath: characterSpriteRenderer
+      value: 
+      objectReference: {fileID: 813360400}
     - target: {fileID: 7974416486895435244, guid: 2eeb939c97a0dc84dbfdb5bcf4f6e1c9, type: 3}
       propertyPath: m_Layer
       value: 9
@@ -85177,6 +85197,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CoinText: {fileID: 199881945}
+  saleShopUI: {fileID: 0}
+  ShopController: {fileID: 0}
 --- !u!114 &813360399 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4606348892272059951, guid: 2eeb939c97a0dc84dbfdb5bcf4f6e1c9, type: 3}
@@ -85188,6 +85210,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d13943be395902940a2218fd536063c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!212 &813360400 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 6833178124414420942, guid: 2eeb939c97a0dc84dbfdb5bcf4f6e1c9, type: 3}
+  m_PrefabInstance: {fileID: 813360395}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &826226170
 GameObject:
   m_ObjectHideFlags: 0
@@ -85889,6 +85916,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameWin
       objectReference: {fileID: 0}
+    - target: {fileID: 3173355417250122557, guid: 023bcacf41d388d4c9be7f4bf0d7d8a2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5508709004649683251, guid: 023bcacf41d388d4c9be7f4bf0d7d8a2, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -86002,6 +86033,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b368330484adede419a1318cdee5869b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  messageUI: {fileID: 0}
 --- !u!114 &1106892520
 MonoBehaviour:
   m_ObjectHideFlags: 0
