@@ -40,4 +40,9 @@ public class SystemController : MonoBehaviour
         Time.timeScale = 1;
         SceneManager.LoadScene("DemoMap3");
     }
+
+    public void DemoButton()
+    {
+        Debug.Log("aaa");
+    }
 }

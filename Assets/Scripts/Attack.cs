@@ -23,6 +23,7 @@ public class Attack : MonoBehaviour
 
     public TextMeshProUGUI CoinText;
     public ShopController shopController;
+    public SpriteRenderer characterSpriteRenderer;
 
     private void Awake()
     {
@@ -58,6 +59,7 @@ public class Attack : MonoBehaviour
     {
         if (!_isBuffed)
         {
+            characterSpriteRenderer.color = Color.red;
             _isBuffed = true;
             AttackDamage += boostAmount;
             _buffCoroutine = StartCoroutine(RemoveBuff(boostAmount, duration));
@@ -70,6 +72,7 @@ public class Attack : MonoBehaviour
 
         AttackDamage -= boostAmount;
         _isBuffed = false;
+        characterSpriteRenderer.color = Color.white;
 
         Debug.Log("Damage buff ended");
     }
