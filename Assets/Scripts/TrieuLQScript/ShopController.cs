@@ -40,4 +40,6 @@ public class ShopController : MonoBehaviour
     {
         Time.timeScale = 1;
     }
+
+
 }

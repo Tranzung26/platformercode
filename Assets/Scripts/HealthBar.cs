@@ -14,6 +14,7 @@ public class HealthBar : MonoBehaviour
     public Slider HealthBarSlider;
     public TextMeshProUGUI CoinText;
     public ShopController shopController;
+    public TextMeshProUGUI priceItem;
 
     private void Awake()
     {
@@ -70,9 +71,10 @@ public class HealthBar : MonoBehaviour
     public void BuyMaxHealItem()
     {
         int currentCoin = int.Parse(CoinText.text);
-        if (currentCoin >= 3)
+        int priceInt = int.Parse(priceItem.text);
+        if (currentCoin >= priceInt)
         {
-            currentCoin -= 3;
+            currentCoin -= priceInt;
             CoinText.SetText(currentCoin.ToString());
             _damagable.MaxHealth += 10;
             _damagable.Health += 10;
@@ -82,9 +84,5 @@ public class HealthBar : MonoBehaviour
         {
             shopController.MessageError("Don't Enough Coin. Please Try Again");
         }
-        
-        
-        
-
     }
 }

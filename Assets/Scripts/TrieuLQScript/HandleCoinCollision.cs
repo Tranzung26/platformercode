@@ -7,7 +7,8 @@ public class HandleCoinCollision : MonoBehaviour
     public TextMeshProUGUI CoinText;
     private AudioManager audioManager;
     public GameObject saleShopUI;
-    public ShopController ShopController;
+    public TextMeshProUGUI priceItem;
+    public TextMeshProUGUI priceDescription;
 
     private void Awake()
     {
@@ -39,14 +40,19 @@ public class HandleCoinCollision : MonoBehaviour
 
         if (collision.CompareTag("SaleShop"))
         {
-            Time.timeScale = 0;
+            priceItem.SetText("1");
+            priceDescription.SetText("Max Health Item (Sale)");
             saleShopUI.SetActive(true);
-            this.showSaleShop();
+            Time.timeScale = 0;
+            Destroy(collision.gameObject);
         }
     }
 
-    private void showSaleShop()
+    public void SaleShopBack()
     {
-        Debug.Log("Demo");
+        priceItem.SetText("3");
+        priceDescription.SetText("Max Health Item");
+        Time.timeScale = 1;
     }
+
 }
