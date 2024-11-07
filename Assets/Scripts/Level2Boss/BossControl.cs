@@ -6,8 +6,7 @@ using UnityEngine.UI;
 
 public class BossControl : MonoBehaviour
 {
-    public GameObject BossDoorLeft;
-    public GameObject BossDoorRight;
+    public GameObject BossDoor;
 
     void Start()
     {
@@ -29,14 +28,12 @@ public class BossControl : MonoBehaviour
     public void CloseDoors() 
     {
         // Đóng cửa khi player vào
-        BossDoorLeft.transform.position += new Vector3(0, -2, 0);//vị trí Đóng cửa
-        BossDoorRight.transform.position += new Vector3(0, -2, 0);
+        BossDoor.transform.position += new Vector3(0, -2, 0);//vị trí Đóng cửa
     }
 
     public void OpenDoors()
     {
         // Mở cửa khi boss bị tiêu diệt
-        BossDoorLeft.transform.position += new Vector3(0, 2, 0); //vị trí mở cửa
-        BossDoorRight.transform.position += new Vector3(0, 2, 0);
+        BossDoor.transform.position += new Vector3(0, 2, 0); //vị trí mở cửa
     }
 }
