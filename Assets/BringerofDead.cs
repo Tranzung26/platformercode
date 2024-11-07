@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(TouchingDirections))]
@@ -22,6 +23,11 @@ public class BringerofDead : MonoBehaviour
     TouchingDirections _touchingDirections;
     Animator _animator;
     Damagable _damageable;
+    PlayerController _player;
+
+    [SerializeField]
+    bool _isMoving = false;
+
 
     public enum WalkableDirection { Right, Left };
 
@@ -51,13 +57,40 @@ public class BringerofDead : MonoBehaviour
             _animator.SetBool(AnimationStrings.HasTarget, value);
         }
     }
+    public bool IsMoving
+    {
+        get => _isMoving;
+        private set
+        {
+            _isMoving = value;
+            _animator.SetBool(AnimationStrings.IsMoving, value);
+        }
+    }
 
+    /* public bool CanMove
+     {
+         get => _animator.GetBool(AnimationStrings.CanMove);
+         set => _animator.SetBool(AnimationStrings.CanMove, value);
+     }*/
     public bool CanMove
     {
         get => _animator.GetBool(AnimationStrings.CanMove);
-        set => _animator.SetBool(AnimationStrings.CanMove, value);
-    }
+        set
+        {
+            _animator.SetBool(AnimationStrings.CanMove, value);
+            _animator.SetBool("isMoving", value); // Cập nhật IsMoving dựa trên CanMove
 
+            if (!value)
+            {
+                _rb.velocity = Vector2.zero; // Dừng mọi chuyển động
+                _animator.speed = 0; // Tạm dừng tất cả các animation nếu cần
+            }
+            else
+            {
+                _animator.speed = 1; // Khôi phục tốc độ animation khi có thể di chuyển
+            }
+        }
+    }
     public float AttackCooldown
     {
         get => _animator.GetFloat(AnimationStrings.AttackCooldown);
@@ -78,6 +111,8 @@ public class BringerofDead : MonoBehaviour
         rightBoundary = transform.position.x + 5f;
         _damagable = GetComponent<Damagable>();
         _damagable.Died.AddListener(OnDeath);
+
+        _player = FindObjectOfType<PlayerController>(); // Lưu tham chiếu đến người chơi
     }
 
     void Update()
@@ -97,14 +132,22 @@ public class BringerofDead : MonoBehaviour
         {
             HandleMovement();
         }
+
+        if (_player != null)
+        {
+            if ((_player.transform.position.x < transform.position.x && WalkDirection == WalkableDirection.Right) ||
+                (_player.transform.position.x > transform.position.x && WalkDirection == WalkableDirection.Left))
+            {
+                FlipDirection();
+            }
+        }
     }
 
     private void OnDeath()
     {
-        PlayerController player = FindObjectOfType<PlayerController>();
-        if (player != null)
+        if (_player != null)
         {
-            player.GainExperience(XPGainOnDeath);
+            _player.GainExperience(XPGainOnDeath);
         }
     }
 
@@ -150,14 +193,15 @@ public class BringerofDead : MonoBehaviour
 
     public void StartAttack()
     {
-        CanMove = false; // Dừng di chuyển khi tấn công
+        if (_player != null && !_player.IsAlive) return;
+
+        CanMove = false;
         _animator.SetTrigger("Attack");
     }
 
-    // Hàm này sẽ được gọi khi kết thúc animation tấn công
     public void EndAttack()
     {
-        CanMove = true; // Cho phép di chuyển lại sau khi tấn công
+        CanMove = true;
     }
 
     private void FlipDirection()

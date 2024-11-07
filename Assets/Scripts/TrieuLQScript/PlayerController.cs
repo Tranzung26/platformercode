@@ -57,7 +57,10 @@ public class PlayerController : MonoBehaviour
         XPThreshold = CalculateXPThreshold(Level);
         LoadPlayerData();
     }
-
+    public bool IsAlive
+    {
+        get => _damagable.Health > 0;
+    }
     public bool IsMoving
     {
         get => _isMoving;

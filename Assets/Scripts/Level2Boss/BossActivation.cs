@@ -5,9 +5,22 @@ using UnityEngine;
 public class BossActivation : MonoBehaviour
 {
     public BossControl bossControl;
-
+    private BringerofDead lastBoss;
     private bool doorsClosed = false;
 
+    void Start()
+    {
+        // Tìm đối tượng với tag "Boss" và lấy tham chiếu đến Knight2
+        GameObject boss = GameObject.FindWithTag("Boss");
+        if (boss != null)
+        {
+            lastBoss = boss.GetComponent<BringerofDead>(); 
+        }
+        else
+        {
+            Debug.LogWarning("No GameObject found with tag 'Boss'");
+        }
+    }
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player") && !doorsClosed)
@@ -20,8 +33,11 @@ public class BossActivation : MonoBehaviour
 
     IEnumerator WaitForBoss()
     {
-/*        // Lưu trạng thái di chuyển hiện tại của người chơi
-        bool previousCanMove = PlayerController.instance.CanMove;*/
+        // Ngăn boss di chuyển nếu bossKnight đã được tìm thấy
+        if (lastBoss != null)
+        {
+            lastBoss.CanMove = false;
+        }
 
         // Ngăn người chơi di chuyển
         PlayerController.instance.CanMove = false;
@@ -31,5 +47,11 @@ public class BossActivation : MonoBehaviour
 
         // Cho phép người chơi di chuyển lại
         PlayerController.instance.CanMove = true;
+
+        // Cho phép boss di chuyển lại nếu bossKnight đã được tìm thấy
+        if (lastBoss != null)
+        {
+            lastBoss.CanMove = true;
+        }
     }
 }

@@ -23,18 +23,21 @@ public class Menu : MonoBehaviour
 
     public void Level2()
     {
-        SceneManager.LoadScene("DemoMap3");
+        /*SceneManager.LoadScene("DemoMap3");*/
+        SceneManager.LoadScene(2);
     }
 
     public void Level3()
     {
         Debug.Log("Level 3");
+        SceneManager.LoadScene("DemoMap3");
     }
 
     public void PlayNewGame()
     {
         PlayerPrefs.DeleteAll();
-        SceneManager.LoadScene("GameplayScene");
+        /*SceneManager.LoadScene("GameplayScene");*/
+        SceneManager.LoadScene(1);
     }
 
     public void ExitToMenu()
