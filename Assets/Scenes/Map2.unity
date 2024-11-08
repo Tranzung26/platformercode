@@ -82112,7 +82112,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 247026126}
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!20 &247026130
 Camera:
   m_ObjectHideFlags: 0
@@ -85198,7 +85198,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CoinText: {fileID: 199881945}
   saleShopUI: {fileID: 0}
-  ShopController: {fileID: 0}
+  priceItem: {fileID: 0}
+  priceDescription: {fileID: 0}
 --- !u!114 &813360399 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4606348892272059951, guid: 2eeb939c97a0dc84dbfdb5bcf4f6e1c9, type: 3}
@@ -85918,7 +85919,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3173355417250122557, guid: 023bcacf41d388d4c9be7f4bf0d7d8a2, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5508709004649683251, guid: 023bcacf41d388d4c9be7f4bf0d7d8a2, type: 3}
       propertyPath: m_IsActive
@@ -86013,7 +86014,6 @@ GameObject:
   - component: {fileID: 1106892522}
   - component: {fileID: 1106892521}
   - component: {fileID: 1106892520}
-  - component: {fileID: 1106892519}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -86021,19 +86021,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1106892519
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1106892518}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b368330484adede419a1318cdee5869b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  messageUI: {fileID: 0}
 --- !u!114 &1106892520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88787,7 +88774,7 @@ PrefabInstance:
     - target: {fileID: 1260093812891568021, guid: 4bb4064eb7fe71f4ba3d8050beabceed, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1106892519}
+      objectReference: {fileID: 0}
     - target: {fileID: 1260093812891568021, guid: 4bb4064eb7fe71f4ba3d8050beabceed, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ExitToMenu

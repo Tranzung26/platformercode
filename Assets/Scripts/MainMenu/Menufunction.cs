@@ -21,7 +21,7 @@ public class Menu : MonoBehaviour
         }
         if (currentMapLevel < 3)
         {
-            level3Button.interactable = false;
+            level3Button.interactable = false; 
         }
     }
     public void Level1()

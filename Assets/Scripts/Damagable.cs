@@ -9,7 +9,7 @@ public class Damagable : MonoBehaviour
 {
     Animator _animator;
 
-    /*public GameObject gameOverUI;*/
+    public GameObject gameOverUI;
 
     private float _timeSinceHit = 0;
 
@@ -51,6 +51,10 @@ public class Damagable : MonoBehaviour
             if (_health <= 0)
             { 
                 IsAlive = false;
+                if (gameObject.CompareTag("Player"))
+                {
+                    gameOverUI.SetActive(true);
+                }
             }
         }
     }

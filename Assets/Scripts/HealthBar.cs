@@ -53,19 +53,25 @@ public class HealthBar : MonoBehaviour
 
     public void BuyHealItem()
     {
-        int currentCoin = int.Parse(CoinText.text);
-        if (currentCoin >= 1)
+        if (_damagable.Health < _damagable.MaxHealth)
         {
-            currentCoin -= 1;
-            CoinText.SetText(currentCoin.ToString());
-            bool health = _damagable.Heal(20);
-            shopController.BuyingSuccess();
+            int currentCoin = int.Parse(CoinText.text);
+            if (currentCoin >= 1)
+            {
+                currentCoin -= 1;
+                CoinText.SetText(currentCoin.ToString());
+                bool health = _damagable.Heal(20);
+                shopController.BuyingSuccess();
+            }
+            else
+            {
+                shopController.MessageError("Don't Enough Coin. Please Try Again");
+            }
         }
         else
         {
-            shopController.MessageError("Don't Enough Coin. Please Try Again");
+            shopController.MessageError("Max Heal => Try Again");
         }
-
     }
 
     public void BuyMaxHealItem()

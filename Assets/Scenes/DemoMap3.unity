@@ -184,7 +184,6 @@ GameObject:
   - component: {fileID: 409776176}
   - component: {fileID: 409776179}
   - component: {fileID: 409776178}
-  - component: {fileID: 409776177}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -207,18 +206,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &409776177
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 409776175}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b368330484adede419a1318cdee5869b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &409776178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45067,7 +45054,7 @@ PrefabInstance:
     - target: {fileID: 1260093812891568021, guid: 4bb4064eb7fe71f4ba3d8050beabceed, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 409776177}
+      objectReference: {fileID: 0}
     - target: {fileID: 1769814601601950743, guid: 4bb4064eb7fe71f4ba3d8050beabceed, type: 3}
       propertyPath: m_Name
       value: GameCanvas
